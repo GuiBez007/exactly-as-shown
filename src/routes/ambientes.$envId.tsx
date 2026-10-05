@@ -241,7 +241,10 @@ function EnvironmentPage() {
           <div className="mt-2 flex flex-col gap-3">
             <div className="flex items-center justify-between">
               <p className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">Listas</p>
-              <AssociateMenu envId={env.id} linkedIds={linkedIds} />
+              <div className="flex items-center gap-1">
+                <AssociateMenu envId={env.id} linkedIds={linkedIds} />
+                {lists.length <= 1 && <NewChecklistButton environmentId={env.id} />}
+              </div>
             </div>
             {lists.length === 1 && <ChecklistCard list={lists[0]} defaultOpen />}
             {lists.length === 0 && <p className="text-xs text-muted-foreground">Nenhuma lista associada.</p>}
@@ -289,8 +292,6 @@ function AssociateMenu({ envId, linkedIds }: { envId: string; linkedIds: string[
           </DropdownMenuCheckboxItem>
         ))}
         {data.checklists.length === 0 && <div className="px-2 py-1.5 text-xs text-muted-foreground">Nenhuma lista criada</div>}
-        <DropdownMenuSeparator />
-        <div className="p-1"><NewChecklistButton environmentId={envId} /></div>
       </DropdownMenuContent>
     </DropdownMenu>
   );

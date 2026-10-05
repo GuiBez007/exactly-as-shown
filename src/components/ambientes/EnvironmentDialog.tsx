@@ -13,7 +13,7 @@ import { EnvironmentIcon } from "./EnvironmentIcon";
 interface Props {
   open: boolean;
   onOpenChange: (o: boolean) => void;
-  environment?: Environment;
+  environment?: Environment | undefined;
 }
 
 /** Create a new environment, or edit name/image of an existing one. */

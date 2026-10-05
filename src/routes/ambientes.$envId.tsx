@@ -53,8 +53,8 @@ import { fileSystem } from "@/services/filesystem";
 import { runExecution } from "@/services/execution";
 
 export const Route = createFileRoute("/ambientes/$envId")({
-  validateSearch: (s: Record<string, unknown>): { folder?: string } => ({
-    folder: typeof s.folder === "string" ? s.folder : undefined,
+  validateSearch: (s: Record<string, unknown>): { folder?: string | undefined } => ({
+    folder: typeof s["folder"] === "string" ? (s["folder"] as string) : undefined,
   }),
   head: () => ({
     meta: [
@@ -102,7 +102,10 @@ function EnvironmentPage() {
   const openTarget = current ?? crumbs[0] ?? data.directories.find((d) => d.environmentId === env.id && !d.parentId);
 
   async function openInWindows() {
-    if (!openTarget) return toast.info("Adicione um diretório primeiro.");
+    if (!openTarget) {
+      toast.info("Adicione um diretório primeiro.");
+      return;
+    }
     const r = await fileSystem.openInExplorer(openTarget.path);
     if (r.ok) toast.success(`Abrindo ${openTarget.path}`);
     else toast.warning("Requer versão desktop", { description: r.message });
@@ -246,7 +249,7 @@ function EnvironmentPage() {
                 {lists.length <= 1 && <NewChecklistButton environmentId={env.id} />}
               </div>
             </div>
-            {lists.length === 1 && <ChecklistCard list={lists[0]} defaultOpen />}
+            {lists.length === 1 && <ChecklistCard list={lists[0]!} defaultOpen />}
             {lists.length === 0 && <p className="text-xs text-muted-foreground">Nenhuma lista associada.</p>}
             {lists.length > 1 && <p className="text-xs text-muted-foreground">{lists.length} listas associadas — veja abaixo.</p>}
           </div>

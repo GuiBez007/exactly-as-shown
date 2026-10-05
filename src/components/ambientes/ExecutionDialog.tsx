@@ -48,7 +48,9 @@ export function ExecutionDialog({
       const a = [...d.actions];
       const j = i + dir;
       if (j < 0 || j >= a.length) return d;
-      [a[i], a[j]] = [a[j], a[i]];
+      const tmp = a[i]!;
+      a[i] = a[j]!;
+      a[j] = tmp;
       return { ...d, actions: a };
     });
 

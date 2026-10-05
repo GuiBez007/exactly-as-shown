@@ -97,7 +97,7 @@ export function createDirectory(input: {
   name: string;
   path: string;
   type: DirectoryType;
-  children?: TreeNode[];
+  children?: TreeNode[] | undefined;
 }): string {
   const id = uid();
   const t = now();

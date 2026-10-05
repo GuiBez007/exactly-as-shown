@@ -55,10 +55,8 @@ export const webFileSystemService: FileSystemService = {
   async runAction(action) {
     if (action.type === "url") {
       const url = /^https?:\/\//i.test(action.value) ? action.value : `http://${action.value}`;
-      const win = window.open(url, "_blank", "noopener");
-      return win === null
-        ? { ok: true } // noopener returns null even on success
-        : { ok: true };
+      window.open(url, "_blank", "noopener");
+      return { ok: true };
     }
     return DESKTOP_ONLY;
   },

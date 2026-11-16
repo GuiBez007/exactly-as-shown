@@ -35,6 +35,10 @@ export interface ChecklistItem {
   text: string;
   completed: boolean;
   position: number;
+  description?: string;
+  price?: number;
+  includeInTotal?: boolean;
+  deleted?: boolean;
   createdAt: number;
   updatedAt: number;
 }

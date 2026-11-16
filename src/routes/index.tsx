@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { LayoutGrid, List, Plus } from "lucide-react";
+import { Download, LayoutGrid, List, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { SidePanel } from "@/components/ambientes/SidePanel";
@@ -8,7 +8,7 @@ import { EnvironmentIcon } from "@/components/ambientes/EnvironmentIcon";
 import { EnvironmentDialog } from "@/components/ambientes/EnvironmentDialog";
 import { ChecklistCard } from "@/components/ambientes/ChecklistCard";
 import { NewChecklistButton } from "@/components/ambientes/NewChecklistButton";
-import { sortedEnvironments, useStore } from "@/lib/store";
+import { exportDataJson, sortedEnvironments, useStore } from "@/lib/store";
 import { PRIORITY_LABEL, type Environment } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -49,7 +49,7 @@ function Home() {
             </div>
           )}
 
-          <div className={cn(view === "icons" ? "grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4" : "flex flex-col gap-2")}>
+          <div className={cn("max-h-[30rem] overflow-y-auto pr-1", view === "icons" ? "grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4" : "flex flex-col gap-2")}>
             {envs.map((e) =>
               view === "icons" ? (
                 <div key={e.id} className="group relative">
@@ -83,6 +83,9 @@ function Home() {
           </p>
           <Button variant="panel" onClick={() => setCreating(true)}>
             <Plus /> Criar ambiente
+          </Button>
+          <Button variant="outline" onClick={() => exportDataJson(data)}>
+            <Download /> Baixar dados (.json)
           </Button>
           <p className="mt-auto text-xs text-muted-foreground">
             Ambientes são categorias do app. Eles não criam pastas no Windows.

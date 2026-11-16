@@ -1,6 +1,7 @@
 import { useSyncExternalStore } from "react";
 import type {
   AppData,
+  ChecklistItem,
   Directory,
   DirectoryType,
   Environment,
@@ -10,10 +11,10 @@ import type {
   TreeNode,
 } from "./types";
 import { uid } from "./id";
-import { emptyData, localStorageRepository, type AppRepository } from "@/services/persistence/repository";
+import { emptyData, fileRepository, type AppRepository } from "@/services/persistence/repository";
 import { flattenTree } from "@/services/persistence/seed";
 
-const repo: AppRepository = localStorageRepository;
+const repo: AppRepository = fileRepository;
 
 interface Snapshot {
   ready: boolean;
@@ -35,6 +36,14 @@ function subscribe(l: () => void) {
     loaded = true;
     snapshot = { ready: true, data: repo.load() };
     queueMicrotask(emit);
+    void repo.loadRemote().then((remote) => {
+      if (remote) {
+        snapshot = { ready: true, data: remote };
+        emit();
+      } else {
+        repo.save(snapshot.data); // first run: create the project file from current data
+      }
+    });
   }
   return () => {
     listeners.delete(l);
@@ -189,8 +198,41 @@ export function toggleChecklistItem(id: string) {
   }));
 }
 
-export function removeChecklistItem(id: string) {
+function patchItem(id: string, patch: Partial<ChecklistItem>) {
+  update((d) => ({
+    ...d,
+    checklistItems: d.checklistItems.map((i) => (i.id === id ? { ...i, ...patch, updatedAt: now() } : i)),
+  }));
+}
+
+/** Soft delete: item leaves the active list but stays stored (shown struck-through). */
+export const removeChecklistItem = (id: string) => patchItem(id, { deleted: true });
+export const restoreChecklistItem = (id: string) => patchItem(id, { deleted: false });
+export const updateChecklistItem = (
+  id: string,
+  patch: Partial<Pick<ChecklistItem, "text" | "description" | "price" | "includeInTotal">>,
+) => patchItem(id, patch);
+
+export function purgeChecklistItem(id: string) {
   update((d) => ({ ...d, checklistItems: d.checklistItems.filter((i) => i.id !== id) }));
+}
+
+/** Swap an active item with its neighbour inside the same completion group. */
+export function moveChecklistItem(id: string, dir: -1 | 1) {
+  update((d) => {
+    const item = d.checklistItems.find((i) => i.id === id);
+    if (!item) return d;
+    const group = sortedItems(d, item.checklistId).filter((i) => i.completed === item.completed);
+    const idx = group.findIndex((i) => i.id === id);
+    const other = group[idx + dir];
+    if (!other) return d;
+    return {
+      ...d,
+      checklistItems: d.checklistItems.map((i) =>
+        i.id === id ? { ...i, position: other.position } : i.id === other.id ? { ...i, position: item.position } : i,
+      ),
+    };
+  });
 }
 
 export function toggleAssociation(environmentId: string, checklistId: string) {
@@ -249,8 +291,26 @@ export function deleteExecutionConfig(environmentId: string) {
 
 export const sortedItems = (d: AppData, checklistId: string) =>
   d.checklistItems
-    .filter((i) => i.checklistId === checklistId)
+    .filter((i) => i.checklistId === checklistId && !i.deleted)
     .sort((a, b) => Number(a.completed) - Number(b.completed) || a.position - b.position);
+
+export const deletedItems = (d: AppData, checklistId: string) =>
+  d.checklistItems.filter((i) => i.checklistId === checklistId && i.deleted).sort((a, b) => b.updatedAt - a.updatedAt);
+
+/** Sum of prices of active items flagged to count in the total. */
+export const checklistTotal = (d: AppData, checklistId: string) =>
+  sortedItems(d, checklistId).reduce((s, i) => s + (i.price != null && i.includeInTotal !== false ? i.price : 0), 0);
+
+export const formatBRL = (v: number) => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+export function exportDataJson(d: AppData) {
+  const blob = new Blob([JSON.stringify(d, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "ambientes-data.json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
 
 export const sortedEnvironments = (d: AppData) =>
   [...d.environments].sort((a, b) => b.priority - a.priority || a.createdAt - b.createdAt);

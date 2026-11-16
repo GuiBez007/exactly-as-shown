@@ -12,5 +12,6 @@
 ## Architecture rules
 - UI → `src/lib/store.ts` (app services) → `src/services/*` (persistence, OS integration). Keeps components free of OS/storage logic so a desktop build can swap implementations.
 - All OS operations (pick folder, open in Explorer, run actions) go through `FileSystemService` in `src/services/filesystem`; the web impl must report `requires-desktop` instead of faking success.
-- Persistence goes through `AppRepository` (localStorage in web MVP) so it can migrate to a DB/desktop storage.
+- Persistence goes through `AppRepository`: primary store is `data/ambientes-data.json` written via server functions (needs writable disk), localStorage is the instant-load cache/fallback.
+- Checklist item deletion is soft (`deleted` flag); only explicit purge removes the record.
 - Checklists are global entities; environment association is a many-to-many join, never ownership.

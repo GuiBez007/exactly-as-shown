@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "environments": [
+    {
+      "id": "fdeyjib7gpdmwjrsjzq",
+      "name": "Desenvolvimento",
+      "icon": null,
+      "description": "",
+      "priority": 2,
+      "createdAt": 1794864184118,
+      "updatedAt": 1794864184118
+    },
+    {
+      "id": "wdxfkglgkbqmwjrsuwk",
+      "name": "Entretenimento",
+      "icon": null,
+      "description": "",
+      "priority": 2,
+      "createdAt": 1794864198260,
+      "updatedAt": 1794864198260
+    },
+    {
+      "id": "jolmwdn037emwjrt16j",
+      "name": "Seção Infinita",
+      "icon": null,
+      "description": "",
+      "priority": 2,
+      "createdAt": 1794864206395,
+      "updatedAt": 1794864206395
+    }
+  ]
+}

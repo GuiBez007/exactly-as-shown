@@ -1,11 +1,6 @@
 import type { TreeNode } from "@/lib/types";
 import type { FileSystemService, OsResult } from "./types";
-
-const DESKTOP_ONLY: OsResult = {
-  ok: false,
-  reason: "requires-desktop",
-  message: "Esta ação precisa da versão desktop do Ambientes. O navegador não tem acesso ao Windows.",
-};
+import { runAction as serverRunAction, openExplorer as serverOpenExplorer } from "@/lib/run-action.functions";
 
 const IGNORED = new Set(["node_modules", ".git", "dist", "build", ".next", ".cache"]);
 const MAX_ENTRIES = 600;
@@ -33,12 +28,14 @@ async function readTree(handle: DirHandle, depth: number, counter: { n: number }
   return out.sort((a, b) => (a.type === b.type ? a.name.localeCompare(b.name) : a.type === "folder" ? -1 : 1));
 }
 
-/** Browser implementation: only does what the browser genuinely allows. */
+/** Browser implementation — delegates OS actions to the Node.js server function. */
 export const webFileSystemService: FileSystemService = {
   platform: "web",
+
   canPickDirectory() {
     return typeof window !== "undefined" && "showDirectoryPicker" in window;
   },
+
   async pickDirectory() {
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -49,15 +46,38 @@ export const webFileSystemService: FileSystemService = {
       return null;
     }
   },
-  async openInExplorer() {
-    return DESKTOP_ONLY;
-  },
-  async runAction(action) {
-    if (action.type === "url") {
-      const url = /^https?:\/\//i.test(action.value) ? action.value : `http://${action.value}`;
-      window.open(url, "_blank", "noopener");
-      return { ok: true };
+
+  async openInExplorer(path: string): Promise<OsResult> {
+    try {
+      const r = await serverOpenExplorer({ data: { path } });
+      return r.ok
+        ? { ok: true }
+        : { ok: false, reason: "error", message: r.message ?? "Erro ao abrir no Windows." };
+    } catch (e) {
+      return { ok: false, reason: "error", message: String(e) };
     }
-    return DESKTOP_ONLY;
+  },
+
+  async runAction(action, projectPath): Promise<OsResult> {
+    try {
+      const r = await serverRunAction({
+        data: {
+          type: action.type,
+          value: action.value,
+          ...(projectPath !== undefined ? { projectPath } : {}),
+        },
+      });
+
+      // Se for npm com openUrl, abre a página local do projeto no navegador
+      if (r.ok && r.openUrl && action.type === "npm") {
+        window.open(r.openUrl, "_blank", "noopener");
+      }
+
+      return r.ok
+        ? { ok: true }
+        : { ok: false, reason: "error", message: r.message ?? "Erro ao executar" };
+    } catch (e) {
+      return { ok: false, reason: "error", message: String(e) };
+    }
   },
 };

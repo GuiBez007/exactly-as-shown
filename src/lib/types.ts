@@ -6,6 +6,7 @@ export interface Environment {
   icon: string | null; // data URL (square, resized)
   description: string;
   priority: Priority;
+  position?: number;
   createdAt: number;
   updatedAt: number;
 }
@@ -19,6 +20,7 @@ export interface Directory {
   name: string;
   path: string;
   type: DirectoryType;
+  position?: number;
   createdAt: number;
 }
 
@@ -51,11 +53,13 @@ export interface EnvironmentChecklist {
 export interface ExecutionConfig {
   id: string;
   environmentId: string;
+  directoryId?: string | null;
+  projectPath?: string;
   name: string;
   enabled: boolean;
 }
 
-export type ExecutionActionType = "executable" | "batch" | "terminal" | "url" | "application";
+export type ExecutionActionType = "terminal" | "file" | "url" | "npm" | "batch" | "executable" | "application";
 
 export interface ExecutionAction {
   id: string;
@@ -85,10 +89,9 @@ export interface TreeNode {
 
 export const PRIORITY_LABEL: Record<Priority, string> = { 1: "Baixa", 2: "Média", 3: "Alta" };
 
-export const ACTION_TYPE_LABEL: Record<ExecutionActionType, string> = {
-  terminal: "Abrir terminal em",
-  batch: "Executar .bat",
-  executable: "Executar .exe",
-  application: "Abrir programa",
-  url: "Abrir URL",
+export const ACTION_TYPE_LABEL: Record<string, string> = {
+  terminal: "abrir terminal",
+  file: "duplo clique em",
+  url: "abrir URL",
+  npm: "projeto npm",
 };

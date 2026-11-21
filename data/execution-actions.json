@@ -1,0 +1,37 @@
+[
+  {
+    "id": "d93fc0cb-62c2-4458-b497-af4dab035bbb",
+    "executionConfigId": "71ce8b48-0cc9-4215-b3d1-79b09503071b",
+    "type": "npm",
+    "value": "7001",
+    "position": 0
+  },
+  {
+    "id": "f3b525bb-7623-45d5-aee6-e2e9edee27f1",
+    "executionConfigId": "f558bb7c-ede9-4fa2-9ea2-b1ac51508b0a",
+    "type": "file",
+    "value": "index|html",
+    "position": 0
+  },
+  {
+    "id": "6ecbbb63-3ca7-45e7-8f5c-19004cf91976",
+    "executionConfigId": "da008856-3d92-4d96-8dea-2815e33330ca",
+    "type": "npm",
+    "value": "7002",
+    "position": 0
+  },
+  {
+    "id": "c2aa66b1-0a55-464e-bf26-5b8b3d5c0485",
+    "executionConfigId": "ba863a30-221e-4a4b-a573-4f2e4d669a9d",
+    "type": "npm",
+    "value": "7000",
+    "position": 0
+  },
+  {
+    "id": "44a85290-d78c-40a4-bd19-bd8828690cbb",
+    "executionConfigId": "ba863a30-221e-4a4b-a573-4f2e4d669a9d",
+    "type": "url",
+    "value": "https://youtube.com/playlist?list=PLLPuFVSavNhXk8WnVQ1sFr_ABUryKf6u2&si=AWzf-XOFlR7A5VzK",
+    "position": 1
+  }
+]

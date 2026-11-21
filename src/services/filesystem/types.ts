@@ -20,5 +20,5 @@ export interface FileSystemService {
   canPickDirectory(): boolean;
   pickDirectory(): Promise<PickedDirectory | null>;
   openInExplorer(path: string): Promise<OsResult>;
-  runAction(action: ExecutionAction): Promise<OsResult>;
+  runAction(action: ExecutionAction, projectPath?: string): Promise<OsResult>;
 }

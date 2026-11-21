@@ -1,0 +1,32 @@
+[
+  {
+    "id": "fdeyjib7gpdmwjrsjzq",
+    "name": "Desenvolvimento",
+    "icon": null,
+    "description": "",
+    "priority": 3,
+    "createdAt": 1794864184118,
+    "updatedAt": 1795063779069,
+    "position": 0
+  },
+  {
+    "id": "wdxfkglgkbqmwjrsuwk",
+    "name": "Entretenimento",
+    "icon": null,
+    "description": "",
+    "priority": 2,
+    "createdAt": 1794864198260,
+    "updatedAt": 1794864198260,
+    "position": 1
+  },
+  {
+    "id": "jolmwdn037emwjrt16j",
+    "name": "Seção Infinita",
+    "icon": null,
+    "description": "",
+    "priority": 2,
+    "createdAt": 1794864206395,
+    "updatedAt": 1794864206395,
+    "position": 2
+  }
+]

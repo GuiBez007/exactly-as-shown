@@ -34,15 +34,10 @@ function subscribe(l: () => void) {
   listeners.add(l);
   if (!loaded) {
     loaded = true;
-    snapshot = { ready: true, data: repo.load() };
-    queueMicrotask(emit);
-    void repo.loadRemote().then((remote) => {
-      if (remote) {
-        snapshot = { ready: true, data: remote };
-        emit();
-      } else {
-        repo.save(snapshot.data); // first run: create the project file from current data
-      }
+    // State starts as ready: false; disk is the sole source of truth.
+    void repo.loadRemote().then((data) => {
+      snapshot = { ready: true, data };
+      emit();
     });
   }
   return () => {
@@ -126,6 +121,15 @@ export function createDirectory(input: {
   return id;
 }
 
+export function renameDirectory(id: string, name: string) {
+  const cleanName = name.trim();
+  if (!cleanName) return;
+  update((d) => ({
+    ...d,
+    directories: d.directories.map((dir) => (dir.id === id ? { ...dir, name: cleanName } : dir)),
+  }));
+}
+
 export function deleteDirectory(id: string) {
   update((d) => {
     const remove = new Set([id]);
@@ -139,7 +143,15 @@ export function deleteDirectory(id: string) {
         }
       }
     }
-    return { ...d, directories: d.directories.filter((x) => !remove.has(x.id)) };
+    const cfgIds = new Set(
+      d.executionConfigs.filter((c) => c.directoryId && remove.has(c.directoryId)).map((c) => c.id),
+    );
+    return {
+      ...d,
+      directories: d.directories.filter((x) => !remove.has(x.id)),
+      executionConfigs: d.executionConfigs.filter((c) => !cfgIds.has(c.id)),
+      executionActions: d.executionActions.filter((a) => !cfgIds.has(a.executionConfigId)),
+    };
   });
 }
 
@@ -254,16 +266,32 @@ export function toggleAssociation(environmentId: string, checklistId: string) {
 export interface ExecutionDraft {
   name: string;
   enabled: boolean;
+  projectPath?: string;
   actions: { type: ExecutionActionType; value: string }[];
 }
 
-export function saveExecutionConfig(environmentId: string, draft: ExecutionDraft) {
+export function saveExecutionConfig(
+  environmentId: string,
+  directoryId: string | null | undefined,
+  draft: ExecutionDraft,
+) {
   update((d) => {
-    const existing = d.executionConfigs.find((c) => c.environmentId === environmentId);
+    const existing = d.executionConfigs.find(
+      (c) =>
+        c.environmentId === environmentId &&
+        (directoryId ? c.directoryId === directoryId : !c.directoryId),
+    );
     const id = existing?.id ?? uid();
-    const config = { id, environmentId, name: draft.name, enabled: draft.enabled };
+    const config = {
+      id,
+      environmentId,
+      directoryId: directoryId ?? null,
+      projectPath: draft.projectPath?.trim() || "",
+      name: draft.name,
+      enabled: draft.enabled,
+    };
     const actions: ExecutionAction[] = draft.actions
-      .filter((a) => a.value.trim())
+      .filter((a) => a.type === "terminal" || a.value.trim().length > 0)
       .map((a, i) => ({ id: uid(), executionConfigId: id, type: a.type, value: a.value.trim(), position: i }));
     return {
       ...d,
@@ -275,9 +303,13 @@ export function saveExecutionConfig(environmentId: string, draft: ExecutionDraft
   });
 }
 
-export function deleteExecutionConfig(environmentId: string) {
+export function deleteExecutionConfig(environmentId: string, directoryId?: string | null) {
   update((d) => {
-    const cfg = d.executionConfigs.find((c) => c.environmentId === environmentId);
+    const cfg = d.executionConfigs.find(
+      (c) =>
+        c.environmentId === environmentId &&
+        (directoryId ? c.directoryId === directoryId : !c.directoryId),
+    );
     if (!cfg) return d;
     return {
       ...d,
@@ -301,6 +333,12 @@ export const deletedItems = (d: AppData, checklistId: string) =>
 export const checklistTotal = (d: AppData, checklistId: string) =>
   sortedItems(d, checklistId).reduce((s, i) => s + (i.price != null && i.includeInTotal !== false ? i.price : 0), 0);
 
+/** Remaining price: total sum minus prices of completed (checked) active items that count in the total. */
+export const checklistRemainingTotal = (d: AppData, checklistId: string) =>
+  sortedItems(d, checklistId)
+    .filter((i) => !i.completed)
+    .reduce((s, i) => s + (i.price != null && i.includeInTotal !== false ? i.price : 0), 0);
+
 export const formatBRL = (v: number) => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
 export function exportDataJson(d: AppData) {
@@ -313,15 +351,39 @@ export function exportDataJson(d: AppData) {
 }
 
 export const sortedEnvironments = (d: AppData) =>
-  [...d.environments].sort((a, b) => b.priority - a.priority || a.createdAt - b.createdAt);
+  [...d.environments].sort((a, b) => (a.position ?? a.createdAt) - (b.position ?? b.createdAt));
 
 export const childrenOf = (d: AppData, environmentId: string, parentId: string | null) =>
   d.directories
     .filter((x) => x.environmentId === environmentId && x.parentId === parentId)
-    .sort((a, b) => (a.type === b.type ? a.name.localeCompare(b.name) : a.type === "folder" ? -1 : 1));
+    .sort((a, b) => (a.position ?? a.createdAt) - (b.position ?? b.createdAt));
 
-export function getExecution(d: AppData, environmentId: string) {
-  const config = d.executionConfigs.find((c) => c.environmentId === environmentId);
+export function reorderEnvironments(orderedIds: string[]) {
+  update((d) => ({
+    ...d,
+    environments: d.environments.map((e) => {
+      const idx = orderedIds.indexOf(e.id);
+      return idx !== -1 ? { ...e, position: idx } : e;
+    }),
+  }));
+}
+
+export function reorderDirectories(orderedIds: string[]) {
+  update((d) => ({
+    ...d,
+    directories: d.directories.map((dir) => {
+      const idx = orderedIds.indexOf(dir.id);
+      return idx !== -1 ? { ...dir, position: idx } : dir;
+    }),
+  }));
+}
+
+export function getExecution(d: AppData, environmentId: string, directoryId?: string | null) {
+  const config = d.executionConfigs.find(
+    (c) =>
+      c.environmentId === environmentId &&
+      (directoryId ? c.directoryId === directoryId : !c.directoryId),
+  );
   if (!config) return null;
   const actions = d.executionActions
     .filter((a) => a.executionConfigId === config.id)

@@ -3,17 +3,19 @@ import { readDataFile, writeDataFile } from "@/lib/data-file.functions";
 import { createSeedData } from "./seed";
 
 /**
- * Persistence abstraction. Primary store is a JSON file inside the project
- * (data/ambientes-data.json, via server functions); localStorage is kept as an
- * instant-load cache and fallback when the server disk isn't writable.
+ * Persistence abstraction.
+ * The ONLY source of truth is the JSON slice files on disk under data/,
+ * read/written via server functions. No browser storage is used.
  */
 export interface AppRepository {
+  /** Returns empty placeholder data (state starts as `ready: false`). */
   load(): AppData;
-  loadRemote(): Promise<AppData | null>;
+  /** Reads the data file from disk. Seeds the file if it doesn't exist yet. */
+  loadRemote(): Promise<AppData>;
+  /** Writes data to disk via the server function (debounced). */
   save(data: AppData): void;
 }
 
-const KEY = "ambientes:data:v1";
 let timer: ReturnType<typeof setTimeout> | undefined;
 let pending: AppData | null = null;
 
@@ -26,29 +28,29 @@ function flush() {
 
 export const fileRepository: AppRepository = {
   load() {
-    try {
-      const raw = window.localStorage.getItem(KEY);
-      if (raw) return JSON.parse(raw) as AppData;
-    } catch {
-      /* ignore */
-    }
-    return createSeedData();
+    return emptyData();
   },
+
   async loadRemote() {
     try {
       const res = await readDataFile();
-      if (res.ok && res.json) return JSON.parse(res.json) as AppData;
-    } catch {
-      /* ignore */
-    }
-    return null;
-  },
-  save(data) {
-    try {
-      window.localStorage.setItem(KEY, JSON.stringify(data));
+      if (res.ok && res.json) {
+        return JSON.parse(res.json) as AppData;
+      }
     } catch (e) {
-      console.error("Falha ao salvar dados", e);
+      console.error("Falha ao ler arquivo de dados", e);
     }
+
+    // File doesn't exist or is unreadable — seed it.
+    const seed = createSeedData();
+    const json = JSON.stringify(seed, null, 2);
+    await writeDataFile({ data: { json } }).catch((e) =>
+      console.error("Falha ao criar arquivo seed", e),
+    );
+    return seed;
+  },
+
+  save(data) {
     pending = data;
     clearTimeout(timer);
     timer = setTimeout(flush, 400);

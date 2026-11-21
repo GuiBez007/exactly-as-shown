@@ -1,0 +1,986 @@
+[
+  {
+    "id": "9854c259-6fb0-47fd-9570-a54e465a0152",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": null,
+    "name": "LeitorPDF",
+    "path": "LeitorPDF",
+    "type": "folder",
+    "createdAt": 1795035855225,
+    "position": 1
+  },
+  {
+    "id": "e4df7826-dfa7-44de-a1be-574098389a74",
+    "environmentId": "wdxfkglgkbqmwjrsuwk",
+    "parentId": null,
+    "name": "GAS+",
+    "path": "GAS+",
+    "type": "folder",
+    "createdAt": 1795058541319
+  },
+  {
+    "id": "3871e62c-488d-4cc2-b082-e74317d5a64d",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": null,
+    "name": "MindSpace",
+    "path": "MindSpace",
+    "type": "folder",
+    "createdAt": 1795058814007,
+    "position": 2
+  },
+  {
+    "id": "b37340c6-d919-4795-8fa8-60b40df844a2",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": null,
+    "name": "GameDevSolo",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer",
+    "type": "folder",
+    "createdAt": 1795064484588,
+    "position": 0
+  },
+  {
+    "id": "7d415914-8c7e-45c0-bf4d-b52c3bdb3558",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "b37340c6-d919-4795-8fa8-60b40df844a2",
+    "name": "public",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\public",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "54033fcb-7413-4eaf-8fb0-1d9d97005544",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "7d415914-8c7e-45c0-bf4d-b52c3bdb3558",
+    "name": "Wireframes",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\public\\Wireframes",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "8ad8c36e-97ac-4f4d-a7cf-58bd1bdccf64",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "54033fcb-7413-4eaf-8fb0-1d9d97005544",
+    "name": "_Molde GameCard.png",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\public\\Wireframes\\_Molde GameCard.png",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "76c31a85-bd13-4c34-9ba3-e294f5390e72",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "54033fcb-7413-4eaf-8fb0-1d9d97005544",
+    "name": "P1_Jornada Completa.png",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\public\\Wireframes\\P1_Jornada Completa.png",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "9c118ce4-6964-4b19-9b36-1a84b17bdaf6",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "54033fcb-7413-4eaf-8fb0-1d9d97005544",
+    "name": "P2_Areas do Jogo.png",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\public\\Wireframes\\P2_Areas do Jogo.png",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "f40c3ba1-cde3-495f-afab-47af05ab3d78",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "54033fcb-7413-4eaf-8fb0-1d9d97005544",
+    "name": "P3_Monstros e Criaturas.png",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\public\\Wireframes\\P3_Monstros e Criaturas.png",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "cfee945d-65d1-4704-be43-e5bf01f29994",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "54033fcb-7413-4eaf-8fb0-1d9d97005544",
+    "name": "P4.1_Habilidades do Personagem.png",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\public\\Wireframes\\P4.1_Habilidades do Personagem.png",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "d03db277-2d62-4a0e-9955-ef1ce69694c1",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "54033fcb-7413-4eaf-8fb0-1d9d97005544",
+    "name": "P4.2_Trajetoria do Personagem.png",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\public\\Wireframes\\P4.2_Trajetoria do Personagem.png",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "0b87ced6-20c3-40bc-afc5-f738e43fd6cc",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "54033fcb-7413-4eaf-8fb0-1d9d97005544",
+    "name": "P4.3_Relacoes com Outros Personagens.png",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\public\\Wireframes\\P4.3_Relacoes com Outros Personagens.png",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "34a67256-4db1-4c3b-a0d5-e6a4ad353152",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "7d415914-8c7e-45c0-bf4d-b52c3bdb3558",
+    "name": "favicon.svg",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\public\\favicon.svg",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "2a12a74d-dbb8-42e5-bb57-eb2827030460",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "7d415914-8c7e-45c0-bf4d-b52c3bdb3558",
+    "name": "icons.svg",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\public\\icons.svg",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "73a5b14f-31c9-473a-a585-69bf18596361",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "b37340c6-d919-4795-8fa8-60b40df844a2",
+    "name": "src",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "f38d8b01-77c3-45e1-832a-11fca1e407b9",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "73a5b14f-31c9-473a-a585-69bf18596361",
+    "name": "assets",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "95294e9e-4165-4725-b29b-7bc5237212df",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "f38d8b01-77c3-45e1-832a-11fca1e407b9",
+    "name": "_IMAGENS",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\_IMAGENS",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "71e027f9-d274-4a7e-adbf-f7673b5a982e",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "95294e9e-4165-4725-b29b-7bc5237212df",
+    "name": "_INSPIRADOR",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\_IMAGENS\\_INSPIRADOR",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "779ed2f2-9668-45fc-a0aa-348bb6eda894",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "95294e9e-4165-4725-b29b-7bc5237212df",
+    "name": "__OQ_TENHO.txt",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\_IMAGENS\\__OQ_TENHO.txt",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "d169dc8e-f8ef-4057-b67c-8dd47988924d",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "f38d8b01-77c3-45e1-832a-11fca1e407b9",
+    "name": ".github",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\.github",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "516d6513-73f1-437a-a1bd-8b4ee7506bd2",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "d169dc8e-f8ef-4057-b67c-8dd47988924d",
+    "name": "workflows",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\.github\\workflows",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "171345cd-6819-4976-baef-166c86a0d1b3",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "f38d8b01-77c3-45e1-832a-11fca1e407b9",
+    "name": "showcase_app",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\showcase_app",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "5dcf9744-2792-4b4f-b30d-014571705b2a",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "171345cd-6819-4976-baef-166c86a0d1b3",
+    "name": "public",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\showcase_app\\public",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "5499fcc9-0c73-4983-b209-8fa5687999e8",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "171345cd-6819-4976-baef-166c86a0d1b3",
+    "name": "scripts",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\showcase_app\\scripts",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "e6d4ec00-d68a-40cc-92b7-8d6301c5334c",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "171345cd-6819-4976-baef-166c86a0d1b3",
+    "name": "src",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\showcase_app\\src",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "2193405c-2b44-4e93-9cec-706817010e99",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "171345cd-6819-4976-baef-166c86a0d1b3",
+    "name": ".gitignore",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\showcase_app\\.gitignore",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "21d148c7-b960-45eb-8335-703930b52e27",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "171345cd-6819-4976-baef-166c86a0d1b3",
+    "name": "eslint.config.js",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\showcase_app\\eslint.config.js",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "c8bd14ff-a32f-456c-9c8b-afbf5f4b50c5",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "171345cd-6819-4976-baef-166c86a0d1b3",
+    "name": "index.html",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\showcase_app\\index.html",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "0b5bce00-27b1-4136-b7f0-b2eba2d0e0bb",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "171345cd-6819-4976-baef-166c86a0d1b3",
+    "name": "package-lock.json",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\showcase_app\\package-lock.json",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "f5c1d9c8-b79d-4c1f-8e85-567afae48a81",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "171345cd-6819-4976-baef-166c86a0d1b3",
+    "name": "package.json",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\showcase_app\\package.json",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "5cbab03c-2f89-4e96-a014-2bef0546e04a",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "171345cd-6819-4976-baef-166c86a0d1b3",
+    "name": "README.md",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\showcase_app\\README.md",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "ec18370d-fb9f-4cb8-8add-6477cd145b82",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "171345cd-6819-4976-baef-166c86a0d1b3",
+    "name": "vite.config.js",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\showcase_app\\vite.config.js",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "54521267-1e8d-4890-99ae-6c51c2abfe8d",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "f38d8b01-77c3-45e1-832a-11fca1e407b9",
+    "name": "TRSaga+",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\TRSaga+",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "e7220374-3144-45a9-8750-f71e2a0957ff",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "54521267-1e8d-4890-99ae-6c51c2abfe8d",
+    "name": "ENTIDADE_ESPELHO",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\TRSaga+\\ENTIDADE_ESPELHO",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "1fe6bc7b-eb06-436d-ba22-79eb1ae911f7",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "54521267-1e8d-4890-99ae-6c51c2abfe8d",
+    "name": "PERSONAGENS",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\TRSaga+\\PERSONAGENS",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "3ab3bdf0-4bd4-46fb-96f7-c8bd497c10bf",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "f38d8b01-77c3-45e1-832a-11fca1e407b9",
+    "name": "_anotações-observações-IMPORTANTES.lnk",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\_anotações-observações-IMPORTANTES.lnk",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "15b0aaba-04b2-41e8-aa17-700dc1518f2e",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "f38d8b01-77c3-45e1-832a-11fca1e407b9",
+    "name": "pdf.pdf",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\pdf.pdf",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "b68c250b-a77c-4380-b9f9-ee38b0f115f9",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "f38d8b01-77c3-45e1-832a-11fca1e407b9",
+    "name": "README.md",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\assets\\README.md",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "c873e844-4565-4ce9-a9e9-dccd53c2415e",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "73a5b14f-31c9-473a-a585-69bf18596361",
+    "name": "components",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\components",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "39966d25-fd61-4a36-83a8-efcc7c475c80",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "c873e844-4565-4ce9-a9e9-dccd53c2415e",
+    "name": "SimpleModal.jsx",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\components\\SimpleModal.jsx",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "5b5325d3-0e2f-4f10-a30e-d10a16448289",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "c873e844-4565-4ce9-a9e9-dccd53c2415e",
+    "name": "simplemodal.module.css",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\components\\simplemodal.module.css",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "2873cdbb-d507-400e-a98b-7e482f670750",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "73a5b14f-31c9-473a-a585-69bf18596361",
+    "name": "config",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\config",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "29ec171d-5d49-40f0-b76d-9c347b93d8c8",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "2873cdbb-d507-400e-a98b-7e482f670750",
+    "name": "legendConfig.js",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\config\\legendConfig.js",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "959d8f62-f107-462a-a450-565d9bd411d6",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "2873cdbb-d507-400e-a98b-7e482f670750",
+    "name": "utils.js",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\config\\utils.js",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "b334c5bf-9912-4177-ac20-764cb4b12616",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "73a5b14f-31c9-473a-a585-69bf18596361",
+    "name": "data",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\data",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "ade5ff49-4b09-4bdb-b1cf-ad0cc88a6cb3",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "b334c5bf-9912-4177-ac20-764cb4b12616",
+    "name": "_EXCALIFILES",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\data\\_EXCALIFILES",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "0d008775-4d2a-4180-99da-62dba8622f17",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "ade5ff49-4b09-4bdb-b1cf-ad0cc88a6cb3",
+    "name": "EXC GIT HUB OK!",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\data\\_EXCALIFILES\\EXC GIT HUB OK!",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "394b1b5d-5629-47bd-b8ad-919289c5d1c8",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "ade5ff49-4b09-4bdb-b1cf-ad0cc88a6cb3",
+    "name": "Menus_link.txt",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\data\\_EXCALIFILES\\Menus_link.txt",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "834fb4b2-4d27-4e37-b720-2b9feddd411b",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "ade5ff49-4b09-4bdb-b1cf-ad0cc88a6cb3",
+    "name": "Menus.excalidraw",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\data\\_EXCALIFILES\\Menus.excalidraw",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "c4b598ad-781f-4a1a-aebd-3de3e0551c25",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "b334c5bf-9912-4177-ac20-764cb4b12616",
+    "name": "_GARANTIA",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\data\\_GARANTIA",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "01aa4ebb-4e02-4e5f-8d8c-82f2b2323b74",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "c4b598ad-781f-4a1a-aebd-3de3e0551c25",
+    "name": "POS n DLCs.png",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\data\\_GARANTIA\\POS n DLCs.png",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "b862fbf2-8d78-4fc8-a3b7-9a35eab8b27d",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "c4b598ad-781f-4a1a-aebd-3de3e0551c25",
+    "name": "WhatsApp Image 2026-05-06 at 03.41.03.jpeg",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\data\\_GARANTIA\\WhatsApp Image 2026-05-06 at 03.41.03.jpeg",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "fad17d6a-aa64-4bb4-8f2a-b2044a861cd7",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "c4b598ad-781f-4a1a-aebd-3de3e0551c25",
+    "name": "WhatsApp Image 2026-05-06 at 03.53.04.jpeg",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\data\\_GARANTIA\\WhatsApp Image 2026-05-06 at 03.53.04.jpeg",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "974fdc73-419d-4da6-b80d-1d5244179c82",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "73a5b14f-31c9-473a-a585-69bf18596361",
+    "name": "games",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\games",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "1cac8c48-d061-4ea1-b40b-376b5ed0805a",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "974fdc73-419d-4da6-b80d-1d5244179c82",
+    "name": "Livro1",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\games\\Livro1",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "8c65d699-9d63-4bad-a61f-c1986b21b28a",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "1cac8c48-d061-4ea1-b40b-376b5ed0805a",
+    "name": "game_1",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\games\\Livro1\\game_1",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "c8560fa8-0bbf-4c72-a7f7-f48a4d274429",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "1cac8c48-d061-4ea1-b40b-376b5ed0805a",
+    "name": "gen",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\games\\Livro1\\gen",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "32e8252b-a4f1-43cc-a78d-9f2379b259a9",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "974fdc73-419d-4da6-b80d-1d5244179c82",
+    "name": "zExemplo",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\games\\zExemplo",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "3b1da545-4e4b-45b2-a744-590b2f23720d",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "32e8252b-a4f1-43cc-a78d-9f2379b259a9",
+    "name": "game_1",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\games\\zExemplo\\game_1",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "f4da9c94-b47f-4ef9-be48-031e1ebfc3cb",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "32e8252b-a4f1-43cc-a78d-9f2379b259a9",
+    "name": "game_2",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\games\\zExemplo\\game_2",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "d0359139-23d1-4569-b432-35a34cf27fa1",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "32e8252b-a4f1-43cc-a78d-9f2379b259a9",
+    "name": "gen",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\games\\zExemplo\\gen",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "1ea6e43e-64a1-45a3-93f2-f90a16926656",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "974fdc73-419d-4da6-b80d-1d5244179c82",
+    "name": "_INSTRUÇÕES DE USO",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\games\\_INSTRUÇÕES DE USO",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "dbf74e3b-95f2-4cfe-892e-b121052aa069",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "73a5b14f-31c9-473a-a585-69bf18596361",
+    "name": "pages",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "48bd182c-ded9-4765-9835-26db2bd3c835",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "dbf74e3b-95f2-4cfe-892e-b121052aa069",
+    "name": "api",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\api",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "9aac860a-214f-4b86-8b2b-795601274eb4",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "48bd182c-ded9-4765-9835-26db2bd3c835",
+    "name": "save-jornada-data.js",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\api\\save-jornada-data.js",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "4851e027-accf-41e2-8829-1264f9d93684",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "dbf74e3b-95f2-4cfe-892e-b121052aa069",
+    "name": "T01_Home",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T01_Home",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "41411c87-9dd1-4b48-8cb5-a90a704696e4",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "4851e027-accf-41e2-8829-1264f9d93684",
+    "name": "T01_Home.jsx",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T01_Home\\T01_Home.jsx",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "b0428b3e-1ec4-4238-92a0-bdbc29e86b42",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "4851e027-accf-41e2-8829-1264f9d93684",
+    "name": "t01_home.module.css",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T01_Home\\t01_home.module.css",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "d797a1bc-801b-46d5-a266-4b9e7d0846aa",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "dbf74e3b-95f2-4cfe-892e-b121052aa069",
+    "name": "T02_GameCard",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T02_GameCard",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "3b6428a2-2a50-4632-86e1-7a11eb064f52",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "d797a1bc-801b-46d5-a266-4b9e7d0846aa",
+    "name": "GameSelector.jsx",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T02_GameCard\\GameSelector.jsx",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "3473112e-d7af-4601-afad-2b3987fb537e",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "d797a1bc-801b-46d5-a266-4b9e7d0846aa",
+    "name": "gameselector.module.css",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T02_GameCard\\gameselector.module.css",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "d2df4c36-ec07-4fd1-b669-5952c08a9f73",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "d797a1bc-801b-46d5-a266-4b9e7d0846aa",
+    "name": "ImgSelector.jsx",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T02_GameCard\\ImgSelector.jsx",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "09b722ef-d361-46c0-a78e-9574dee547f6",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "d797a1bc-801b-46d5-a266-4b9e7d0846aa",
+    "name": "T02_GameCard.jsx",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T02_GameCard\\T02_GameCard.jsx",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "4da410e1-70d4-4733-a564-e54ba39b354e",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "d797a1bc-801b-46d5-a266-4b9e7d0846aa",
+    "name": "t02_gamecard.module.css",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T02_GameCard\\t02_gamecard.module.css",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "8c40e950-ece6-4d91-bcb1-f83e7b7e4643",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "dbf74e3b-95f2-4cfe-892e-b121052aa069",
+    "name": "T03_Characters",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T03_Characters",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "c12fb5f5-6932-4018-b9ea-38a718ae7cb8",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "8c40e950-ece6-4d91-bcb1-f83e7b7e4643",
+    "name": "CharacterSelector.jsx",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T03_Characters\\CharacterSelector.jsx",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "d003a105-3843-4eba-b7ea-52d1a20aa34a",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "8c40e950-ece6-4d91-bcb1-f83e7b7e4643",
+    "name": "charselector.module.css",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T03_Characters\\charselector.module.css",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "11a9569c-4045-4f34-90b3-42fd6f0c57ee",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "8c40e950-ece6-4d91-bcb1-f83e7b7e4643",
+    "name": "ImageSelector.jsx",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T03_Characters\\ImageSelector.jsx",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "5d6367b1-bf2f-4ca0-bd94-3681c036129f",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "8c40e950-ece6-4d91-bcb1-f83e7b7e4643",
+    "name": "T03_Character_Abilities.jsx",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T03_Characters\\T03_Character_Abilities.jsx",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "c88a7acc-8fd7-47c0-81d3-cf6dc2f2e547",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "8c40e950-ece6-4d91-bcb1-f83e7b7e4643",
+    "name": "T03_Character_Relations.jsx",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T03_Characters\\T03_Character_Relations.jsx",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "dbf76666-f791-463a-a2f1-1622572b75f7",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "8c40e950-ece6-4d91-bcb1-f83e7b7e4643",
+    "name": "T03_Character_Trajectory.jsx",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T03_Characters\\T03_Character_Trajectory.jsx",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "a8e1a965-cbba-432c-aca7-7701b2252e26",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "8c40e950-ece6-4d91-bcb1-f83e7b7e4643",
+    "name": "T03_Characters.jsx",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T03_Characters\\T03_Characters.jsx",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "54a12ea4-d58a-464d-9e15-1ead8f9ac016",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "8c40e950-ece6-4d91-bcb1-f83e7b7e4643",
+    "name": "t03_characters.module.css",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T03_Characters\\t03_characters.module.css",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "74b2f980-7f22-475b-b35a-89426163c6f9",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "dbf74e3b-95f2-4cfe-892e-b121052aa069",
+    "name": "T03_GerenciadorImagens",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T03_GerenciadorImagens",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "7b6e6e0c-0918-4119-bb0a-df54c7e6bc98",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "dbf74e3b-95f2-4cfe-892e-b121052aa069",
+    "name": "T04_JornadaCompleta",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T04_JornadaCompleta",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "1948088e-e213-4757-8481-c1fae4afb4d6",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "7b6e6e0c-0918-4119-bb0a-df54c7e6bc98",
+    "name": "T04_JornadaCompleta.jsx",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T04_JornadaCompleta\\T04_JornadaCompleta.jsx",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "c5e30976-e9a2-4a95-aa32-db94a3b31db2",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "7b6e6e0c-0918-4119-bb0a-df54c7e6bc98",
+    "name": "t04_jornadacompleta.module.css",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T04_JornadaCompleta\\t04_jornadacompleta.module.css",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "6e1eb8de-625b-4fd5-9d14-e169d23a5756",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "dbf74e3b-95f2-4cfe-892e-b121052aa069",
+    "name": "T04_UploadArquivos",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T04_UploadArquivos",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "abff039d-8dd2-4136-81f8-efe453d48550",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "6e1eb8de-625b-4fd5-9d14-e169d23a5756",
+    "name": "T04_UploadArquivos.jsx",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T04_UploadArquivos\\T04_UploadArquivos.jsx",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "76541ef0-9b81-4c5b-8795-238a807c15f7",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "6e1eb8de-625b-4fd5-9d14-e169d23a5756",
+    "name": "t04_uploadarquivos.module.css",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T04_UploadArquivos\\t04_uploadarquivos.module.css",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "de1a6bc6-e47a-4b08-a3c3-97cb03273568",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "dbf74e3b-95f2-4cfe-892e-b121052aa069",
+    "name": "T05_GameAreas",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T05_GameAreas",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "a914bcb7-ad83-40d1-bf63-4f997cdab25c",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "de1a6bc6-e47a-4b08-a3c3-97cb03273568",
+    "name": "T05_GameAreas.jsx",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T05_GameAreas\\T05_GameAreas.jsx",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "eb0eb0dc-add5-4da2-a6d8-7cef297c4908",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "de1a6bc6-e47a-4b08-a3c3-97cb03273568",
+    "name": "t05_gameareas.module.css",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T05_GameAreas\\t05_gameareas.module.css",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "dc7c9eca-011f-4811-8bf7-9d185ca4648f",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "dbf74e3b-95f2-4cfe-892e-b121052aa069",
+    "name": "T06_Monsters",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T06_Monsters",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "1671ee16-cd97-4fa3-9c14-3cba4fb63bda",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "dc7c9eca-011f-4811-8bf7-9d185ca4648f",
+    "name": "T06_Monsters.jsx",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T06_Monsters\\T06_Monsters.jsx",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "e92424b1-0f35-42ed-baa0-d4a7bda140e5",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "dc7c9eca-011f-4811-8bf7-9d185ca4648f",
+    "name": "t06_monsters.module.css",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\pages\\T06_Monsters\\t06_monsters.module.css",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "ff1baaad-e512-4b37-ba97-857da32b07c6",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "73a5b14f-31c9-473a-a585-69bf18596361",
+    "name": "styles",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\styles",
+    "type": "folder",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "09d267a1-87fb-467c-8f8d-fa8f0cb1a907",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "ff1baaad-e512-4b37-ba97-857da32b07c6",
+    "name": "global.css",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\styles\\global.css",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "91e41e5f-f2ba-4485-89de-d07280431fee",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "ff1baaad-e512-4b37-ba97-857da32b07c6",
+    "name": "variables.css",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\styles\\variables.css",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "b714739f-2b36-43c3-be44-6c6b3f1363ec",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "73a5b14f-31c9-473a-a585-69bf18596361",
+    "name": "main.jsx",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\src\\main.jsx",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "9d02cc68-4601-4911-86a7-9de73f895dd5",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "b37340c6-d919-4795-8fa8-60b40df844a2",
+    "name": ".gitignore",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\.gitignore",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "c5b81a98-6531-4ba1-8f3a-798a0eafdd8e",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "b37340c6-d919-4795-8fa8-60b40df844a2",
+    "name": "eslint.config.js",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\eslint.config.js",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "2208cea9-fea2-4bd2-8989-a081b7464584",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "b37340c6-d919-4795-8fa8-60b40df844a2",
+    "name": "index.html",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\index.html",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "21d2834e-acdc-4701-aea2-a0bbf5c72409",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "b37340c6-d919-4795-8fa8-60b40df844a2",
+    "name": "jsconfig.json",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\jsconfig.json",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "0353acd1-3994-4062-82b9-5035a532b470",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "b37340c6-d919-4795-8fa8-60b40df844a2",
+    "name": "package-lock.json",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\package-lock.json",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "a6fe66cd-5729-4208-bbdc-392041d52424",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "b37340c6-d919-4795-8fa8-60b40df844a2",
+    "name": "package.json",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\package.json",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "18bea81f-4e47-4198-a0fe-149bc04f7cb8",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "b37340c6-d919-4795-8fa8-60b40df844a2",
+    "name": "README.md",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\README.md",
+    "type": "file",
+    "createdAt": 1795064484588
+  },
+  {
+    "id": "ffcd2686-3133-4355-81f8-9d7ded3ed73a",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "parentId": "b37340c6-d919-4795-8fa8-60b40df844a2",
+    "name": "vite.config.js",
+    "path": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer\\vite.config.js",
+    "type": "file",
+    "createdAt": 1795064484588
+  }
+]

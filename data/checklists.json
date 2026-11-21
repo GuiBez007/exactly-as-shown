@@ -1,0 +1,20 @@
+[
+  {
+    "id": "6bc9a323-c453-4159-917d-0003aaf0881d",
+    "name": "Melhorias GenO",
+    "createdAt": 1795065299759,
+    "updatedAt": 1795065299759
+  },
+  {
+    "id": "728673bd-96a5-451b-ab7a-45a057d4e8de",
+    "name": "Dívidas",
+    "createdAt": 1795065350399,
+    "updatedAt": 1795065350399
+  },
+  {
+    "id": "50ec6f67-c84f-42b0-ae3f-19aa4244e20f",
+    "name": "Comprar",
+    "createdAt": 1795066102860,
+    "updatedAt": 1795066102860
+  }
+]

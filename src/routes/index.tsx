@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Download, LayoutGrid, List, Plus } from "lucide-react";
+import { LayoutGrid, List, Plus, GripVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { SidePanel } from "@/components/ambientes/SidePanel";
@@ -8,14 +8,14 @@ import { EnvironmentIcon } from "@/components/ambientes/EnvironmentIcon";
 import { EnvironmentDialog } from "@/components/ambientes/EnvironmentDialog";
 import { ChecklistCard } from "@/components/ambientes/ChecklistCard";
 import { NewChecklistButton } from "@/components/ambientes/NewChecklistButton";
-import { exportDataJson, sortedEnvironments, useStore } from "@/lib/store";
+import { reorderEnvironments, sortedEnvironments, useStore } from "@/lib/store";
 import { PRIORITY_LABEL, type Environment } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Ambientes — organize projetos, pastas e listas" },
+      { title: "GenO — organize projetos, pastas e listas" },
       { name: "description", content: "Organize ambientes, diretórios de projetos e checklists em um só lugar." },
       { property: "og:title", content: "Ambientes — organize projetos, pastas e listas" },
       { property: "og:description", content: "Organize ambientes, diretórios de projetos e checklists em um só lugar." },
@@ -29,7 +29,36 @@ function Home() {
   const [view, setView] = useState<"icons" | "list">("icons");
   const [creating, setCreating] = useState(false);
   const [editing, setEditing] = useState<Environment | undefined>();
+  const [draggedEnvId, setDraggedEnvId] = useState<string | null>(null);
   const envs = sortedEnvironments(data);
+
+  const handleDragStart = (e: React.DragEvent, id: string) => {
+    setDraggedEnvId(id);
+    e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.setData("text/plain", id);
+  };
+
+  const handleDragOver = (e: React.DragEvent, targetId: string) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
+    if (!draggedEnvId || draggedEnvId === targetId) return;
+
+    const currentIds = envs.map((env) => env.id);
+    const fromIndex = currentIds.indexOf(draggedEnvId);
+    const toIndex = currentIds.indexOf(targetId);
+    if (fromIndex === -1 || toIndex === -1) return;
+
+    const newIds = [...currentIds];
+    const [moved] = newIds.splice(fromIndex, 1);
+    if (!moved) return;
+    newIds.splice(toIndex, 0, moved);
+
+    reorderEnvironments(newIds);
+  };
+
+  const handleDragEnd = () => {
+    setDraggedEnvId(null);
+  };
 
   return (
     <div className="mx-auto flex min-h-screen max-w-7xl flex-col gap-5 p-4 md:p-6">
@@ -64,8 +93,26 @@ function Home() {
                   <EditBtn onClick={() => setEditing(e)} className="absolute top-2 right-2" />
                 </div>
               ) : (
-                <div key={e.id} className="relative flex items-center rounded-xl border-[1.5px] bg-surface hover:border-highlight/60">
-                  <Link to="/ambientes/$envId" params={{ envId: e.id }} className="flex flex-1 items-center gap-4 p-3">
+                <div
+                  key={e.id}
+                  draggable
+                  onDragStart={(ev) => handleDragStart(ev, e.id)}
+                  onDragOver={(ev) => handleDragOver(ev, e.id)}
+                  onDragEnd={handleDragEnd}
+                  className={cn(
+                    "group relative flex items-center rounded-xl border-[1.5px] bg-surface transition-all hover:border-highlight/60",
+                    draggedEnvId === e.id && "opacity-40",
+                  )}
+                >
+                  {/* Alça de arrastar visível somente em hover */}
+                  <div
+                    title="Arrastar para reordenar"
+                    className="flex cursor-grab items-center justify-center pl-2.5 opacity-0 transition-opacity group-hover:opacity-100 active:cursor-grabbing"
+                  >
+                    <GripVertical className="size-4 text-muted-foreground" />
+                  </div>
+
+                  <Link to="/ambientes/$envId" params={{ envId: e.id }} className="flex flex-1 items-center gap-4 p-3 pl-2">
                     <EnvironmentIcon src={e.icon} name={e.name} className="size-10 rounded-lg" />
                     <span className="flex-1 font-medium">{e.name}</span>
                     <span className="font-mono text-xs text-muted-foreground">prioridade {PRIORITY_LABEL[e.priority].toLowerCase()}</span>
@@ -84,9 +131,7 @@ function Home() {
           <Button variant="panel" onClick={() => setCreating(true)}>
             <Plus /> Criar ambiente
           </Button>
-          <Button variant="outline" onClick={() => exportDataJson(data)}>
-            <Download /> Baixar dados (.json)
-          </Button>
+
           <p className="mt-auto text-xs text-muted-foreground">
             Ambientes são categorias do app. Eles não criam pastas no Windows.
           </p>

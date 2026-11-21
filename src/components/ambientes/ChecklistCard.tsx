@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import {
   addChecklistItem,
+  checklistRemainingTotal,
   checklistTotal,
   formatBRL,
   deleteChecklist,
@@ -37,7 +38,9 @@ export function ChecklistCard({ list, defaultOpen = false }: { list: Checklist; 
   const items = sortedItems(data, list.id);
   const [expanded, setExpanded] = useState(false);
   const total = checklistTotal(data, list.id);
+  const remaining = checklistRemainingTotal(data, list.id);
   const hasPrices = items.some((i) => i.price != null);
+  const hasCheckedPrice = items.some((i) => i.completed && i.price != null && i.includeInTotal !== false);
   const done = items.filter((i) => i.completed).length;
   const linked = data.environmentChecklists.filter((x) => x.checklistId === list.id).map((x) => x.environmentId);
   const linkedEnvs = data.environments.filter((e) => linked.includes(e.id));
@@ -52,7 +55,19 @@ export function ChecklistCard({ list, defaultOpen = false }: { list: Checklist; 
           </span>
           <span className="pl-6 font-mono text-xs text-muted-foreground">
             {done}/{items.length} concluídos
-            {hasPrices && <span className="ml-2 text-highlight">· {formatBRL(total)}</span>}
+            {hasPrices && (
+              <span className="ml-2">
+                ·{" "}
+                {hasCheckedPrice ? (
+                  <>
+                    <span className="line-through text-muted-foreground">{formatBRL(total)}</span>{" "}
+                    <span className="font-semibold text-highlight">{formatBRL(remaining)}</span>
+                  </>
+                ) : (
+                  <span className="text-highlight">{formatBRL(total)}</span>
+                )}
+              </span>
+            )}
           </span>
         </button>
         <DropdownMenu>
@@ -119,11 +134,20 @@ export function ChecklistCard({ list, defaultOpen = false }: { list: Checklist; 
           <ul className="space-y-1">
             <TooltipProvider delayDuration={150}>
             {items.map((i) => {
+              const isExcludedFromTotal = i.price != null && i.includeInTotal === false;
+              const hasMeta = i.price != null || !!i.description;
               const row = (
                 <li key={i.id} className="group flex items-center gap-2.5 rounded-md px-1 py-1 hover:bg-muted">
                   <Checkbox checked={i.completed} onCheckedChange={() => toggleChecklistItem(i.id)} />
                   <span className={cn("flex-1 text-sm", i.completed && "text-muted-foreground line-through")}>{i.text}</span>
-                  {(i.price != null || i.description) && <span className="size-1.5 rounded-full bg-highlight/60" />}
+                  {hasMeta && (
+                    <span
+                      className={cn(
+                        "size-1.5 rounded-full",
+                        isExcludedFromTotal ? "bg-muted-foreground/50" : "bg-highlight/60",
+                      )}
+                    />
+                  )}
                   <button
                     className="text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 hover:text-destructive"
                     onClick={() => removeChecklistItem(i.id)}

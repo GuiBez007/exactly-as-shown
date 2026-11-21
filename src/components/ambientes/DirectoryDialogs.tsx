@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FolderOpen, Sparkles } from "lucide-react";
+import { FolderSearch, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -7,110 +7,137 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { createDirectory } from "@/lib/store";
 import type { Directory, TreeNode } from "@/lib/types";
-import { fileSystem } from "@/services/filesystem";
-import { SAMPLE_PROJECT_TREE } from "@/services/filesystem/mock-data";
+import { pickWindowsFolder, scanWindowsDirectory, type ScannedDiskNode } from "@/lib/run-action.functions";
 
-function countNodes(t: TreeNode[]): number {
-  return t.reduce((n, x) => n + 1 + countNodes(x.children ?? []), 0);
+function convertDiskNodeToTreeNode(node: ScannedDiskNode): TreeNode {
+  return {
+    name: node.name,
+    type: node.type,
+    children: node.children?.map(convertDiskNodeToTreeNode) ?? [],
+  };
 }
 
 export function AddDirectoryDialog({
   open,
   onOpenChange,
   environmentId,
+  parentId = null,
 }: {
   open: boolean;
   onOpenChange: (o: boolean) => void;
   environmentId: string;
+  parentId?: string | null;
 }) {
-  const [name, setName] = useState("");
   const [path, setPath] = useState("");
-  const [tree, setTree] = useState<TreeNode[] | null>(null);
-  const [source, setSource] = useState<"picked" | "sample" | null>(null);
+  const [scanning, setScanning] = useState(false);
 
   useEffect(() => {
     if (open) {
-      setName("");
       setPath("");
-      setTree(null);
-      setSource(null);
+      setScanning(false);
     }
   }, [open]);
 
-  async function pick() {
-    const res = await fileSystem.pickDirectory();
-    if (!res) return;
-    setName(res.name);
-    if (res.path) setPath(res.path);
-    setTree(res.tree);
-    setSource("picked");
+  async function handlePickFolder() {
+    try {
+      const res = await pickWindowsFolder({ data: { title: "Selecione o diretório a adicionar" } });
+      if (res && res.path) {
+        setPath(res.path);
+      }
+    } catch {
+      toast.error("Não foi possível abrir o seletor do Windows");
+    }
   }
 
-  function submit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name.trim()) return;
-    createDirectory({
-      environmentId,
-      parentId: null,
-      name: name.trim(),
-      path: path.trim() || name.trim(),
-      type: "folder",
-      children: tree ?? undefined,
-    });
-    toast.success(`Diretório "${name.trim()}" adicionado`);
-    onOpenChange(false);
+    const cleanPath = path.trim();
+    if (!cleanPath) return;
+
+    setScanning(true);
+    try {
+      // Escaneia a pasta no disco local usando a server function
+      const scanRes = await scanWindowsDirectory({ data: { directoryPath: cleanPath } });
+
+      if (!scanRes.ok) {
+        toast.error(scanRes.error || "Erro ao escanear diretório");
+        setScanning(false);
+        return;
+      }
+
+      const folderName = scanRes.folderName;
+      const childrenTree: TreeNode[] = (scanRes.children ?? []).map(convertDiskNodeToTreeNode);
+
+      createDirectory({
+        environmentId,
+        parentId: parentId ?? null,
+        name: folderName,
+        path: cleanPath,
+        type: "folder",
+        children: childrenTree.length > 0 ? childrenTree : undefined,
+      });
+
+      const count = childrenTree.length;
+      toast.success(`Pasta "${folderName}" adicionada com ${count} item(ns) importado(s)`);
+      onOpenChange(false);
+    } catch (err: any) {
+      toast.error(err?.message || "Falha ao importar diretório");
+    } finally {
+      setScanning(false);
+    }
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-lg">
+    <Dialog open={open} onOpenChange={(o) => !scanning && onOpenChange(o)}>
+      <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Adicionar diretório</DialogTitle>
-          <DialogDescription>Associe um diretório do seu computador a este ambiente.</DialogDescription>
+          <DialogDescription>
+            Informe o caminho da pasta no seu computador para importar a estrutura completa de arquivos.
+          </DialogDescription>
         </DialogHeader>
         <form onSubmit={submit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="dir-name">Nome</Label>
-            <Input id="dir-name" value={name} onChange={(e) => setName(e.target.value)} placeholder="meu-app" />
-          </div>
-          <div className="space-y-2">
             <Label htmlFor="dir-path">Caminho no Windows</Label>
-            <Input id="dir-path" className="font-mono" value={path} onChange={(e) => setPath(e.target.value)} placeholder="C:\Projetos\meu-app" />
-            <p className="text-xs text-muted-foreground">
-              O navegador não revela o caminho real da pasta; informe-o para uso futuro na versão desktop.
-            </p>
-          </div>
-          <div className="space-y-2 rounded-xl border-[1.5px] border-dashed p-3">
-            <p className="text-sm font-medium">Estrutura de arquivos</p>
-            <div className="flex flex-wrap gap-2">
-              {fileSystem.canPickDirectory() && (
-                <Button type="button" variant="outline" size="sm" onClick={pick}>
-                  <FolderOpen /> Ler pasta do computador
-                </Button>
-              )}
+            <div className="flex gap-2">
+              <Input
+                id="dir-path"
+                className="font-mono text-xs"
+                value={path}
+                onChange={(e) => setPath(e.target.value)}
+                placeholder="C:\Projetos\meu-app"
+                disabled={scanning}
+                autoFocus
+              />
               <Button
                 type="button"
                 variant="outline"
-                size="sm"
-                onClick={() => {
-                  setTree(SAMPLE_PROJECT_TREE);
-                  setSource("sample");
-                  if (!name) setName("meu-app");
-                }}
+                size="icon"
+                onClick={handlePickFolder}
+                title="Procurar pasta no Windows..."
+                disabled={scanning}
               >
-                <Sparkles /> Usar estrutura de exemplo
+                <FolderSearch className="size-4" />
               </Button>
             </div>
             <p className="text-xs text-muted-foreground">
-              {tree
-                ? `${countNodes(tree)} itens ${source === "sample" ? "(simulados)" : "lidos da pasta selecionada"}.`
-                : fileSystem.canPickDirectory()
-                  ? "Opcional. A leitura é somente de nomes, feita pelo navegador."
-                  : "Seu navegador não permite ler pastas. Use o exemplo ou adicione sem estrutura."}
+              Você pode digitar o caminho ou clicar na lupa para selecionar a pasta pelo Windows.
             </p>
           </div>
+
           <DialogFooter>
-            <Button type="submit" disabled={!name.trim()}>Adicionar</Button>
+            <Button type="button" variant="ghost" onClick={() => onOpenChange(false)} disabled={scanning}>
+              Cancelar
+            </Button>
+            <Button type="submit" disabled={!path.trim() || scanning}>
+              {scanning ? (
+                <>
+                  <Loader2 className="mr-2 size-4 animate-spin" /> Importando...
+                </>
+              ) : (
+                "Adicionar"
+              )}
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>
@@ -163,6 +190,62 @@ export function CreateFolderDialog({
           <Input autoFocus value={name} onChange={(e) => setName(e.target.value)} placeholder="nova-pasta" />
           <DialogFooter>
             <Button type="submit" disabled={!name.trim()}>Criar</Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+export function RenameFolderDialog({
+  open,
+  onOpenChange,
+  directory,
+  onRename,
+}: {
+  open: boolean;
+  onOpenChange: (o: boolean) => void;
+  directory: Directory | null;
+  onRename: (newName: string) => void;
+}) {
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    if (open && directory) {
+      setName(directory.name);
+    }
+  }, [open, directory]);
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle>Renomear pasta</DialogTitle>
+          <DialogDescription>
+            Altere o nome visual desta pasta no GenO.
+          </DialogDescription>
+        </DialogHeader>
+        <form
+          className="space-y-4"
+          onSubmit={(e) => {
+            e.preventDefault();
+            const n = name.trim();
+            if (!n || n === directory?.name) {
+              onOpenChange(false);
+              return;
+            }
+            onRename(n);
+            onOpenChange(false);
+          }}
+        >
+          <Input autoFocus value={name} onChange={(e) => setName(e.target.value)} placeholder="Nome da pasta" />
+          <DialogFooter>
+            <Button type="button" variant="ghost" onClick={() => onOpenChange(false)}>
+              Cancelar
+            </Button>
+            <Button type="submit" disabled={!name.trim()}>
+              Salvar
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>

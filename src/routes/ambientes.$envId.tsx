@@ -10,6 +10,7 @@ import {
   Link2,
   LayoutGrid,
   List,
+  Pencil,
   Play,
   Plus,
   Settings2,
@@ -36,13 +37,15 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { SidePanel } from "@/components/ambientes/SidePanel";
 import { EnvironmentIcon } from "@/components/ambientes/EnvironmentIcon";
 import { DirectoryIcons, DirectoryTree } from "@/components/ambientes/DirectoryView";
-import { AddDirectoryDialog, CreateFolderDialog } from "@/components/ambientes/DirectoryDialogs";
+import { AddDirectoryDialog, CreateFolderDialog, RenameFolderDialog } from "@/components/ambientes/DirectoryDialogs";
 import { ExecutionDialog } from "@/components/ambientes/ExecutionDialog";
 import { ChecklistCard } from "@/components/ambientes/ChecklistCard";
 import { NewChecklistButton } from "@/components/ambientes/NewChecklistButton";
 import {
   deleteDirectory,
+  deleteEnvironment,
   getExecution,
+  renameDirectory,
   setEnvironmentPriority,
   toggleAssociation,
   updateEnvironment,
@@ -75,7 +78,13 @@ function EnvironmentPage() {
   const [view, setView] = useState<"icons" | "list">("list");
   const [addDir, setAddDir] = useState(false);
   const [newFolder, setNewFolder] = useState(false);
+  const [renamingFolder, setRenamingFolder] = useState(false);
   const [execOpen, setExecOpen] = useState(false);
+  const [execTarget, setExecTarget] = useState<{
+    directoryId?: string | null;
+    targetName: string;
+    initialPath?: string;
+  } | null>(null);
   const [running, setRunning] = useState(false);
 
   const env = data.environments.find((e) => e.id === envId);
@@ -94,33 +103,77 @@ function EnvironmentPage() {
   for (let c = current; c; c = c.parentId ? data.directories.find((d) => d.id === c!.parentId) ?? null : null) crumbs.unshift(c);
   const goFolder = (id?: string) => navigate({ search: { folder: id } });
 
-  const exec = getExecution(data, env.id);
-  const showRun = !!exec && exec.config.enabled && exec.actions.length > 0;
+  // Executável exclusivo do contexto atual: se estiver em pasta, da pasta; se estiver na raiz, do ambiente.
+  const activeExec = getExecution(data, env.id, current?.id ?? null);
+  const showRun = !!activeExec && activeExec.config.enabled && activeExec.actions.length > 0;
+
   const linkedIds = data.environmentChecklists.filter((x) => x.environmentId === env.id).map((x) => x.checklistId);
   const lists = data.checklists.filter((l) => linkedIds.includes(l.id));
 
   const openTarget = current ?? crumbs[0] ?? data.directories.find((d) => d.environmentId === env.id && !d.parentId);
 
-  async function openInWindows() {
-    if (!openTarget) {
-      toast.info("Adicione um diretório primeiro.");
-      return;
+  function openExecConfig() {
+    if (current) {
+      setExecTarget({
+        directoryId: current.id,
+        targetName: current.name,
+        initialPath: current.path,
+      });
+    } else {
+      setExecTarget({
+        directoryId: null,
+        targetName: env!.name,
+      });
     }
-    const r = await fileSystem.openInExplorer(openTarget.path);
-    if (r.ok) toast.success(`Abrindo ${openTarget.path}`);
-    else toast.warning("Requer versão desktop", { description: r.message });
+    setExecOpen(true);
   }
 
-  async function run() {
-    if (!exec) return;
+  async function openInWindows() {
+    // 1. Tenta obter o caminho configurado no executável do contexto atual
+    // 2. Ou o caminho da pasta/diretório se for um caminho absoluto válido no Windows
+    let targetPath = activeExec?.config.projectPath?.trim() || "";
+
+    if (!targetPath && current?.path && (current.path.includes(":\\") || current.path.startsWith("/"))) {
+      targetPath = current.path.trim();
+    }
+
+    if (!targetPath && openTarget?.path && (openTarget.path.includes(":\\") || openTarget.path.startsWith("/"))) {
+      targetPath = openTarget.path.trim();
+    }
+
+    if (!targetPath) {
+      toast.error("Diretório do projeto não configurado.");
+      return;
+    }
+
+    const r = await fileSystem.openInExplorer(targetPath);
+    if (r.ok) {
+      toast.success(`Abrindo no Windows: ${targetPath}`);
+    } else {
+      toast.error(r.message || "Erro ao abrir o diretório no Windows.");
+    }
+  }
+
+  async function runConfig(cfg: NonNullable<ReturnType<typeof getExecution>>) {
     setRunning(true);
-    const r = await runExecution(exec.actions);
+    const r = await runExecution(cfg.actions, cfg.config.projectPath);
     setRunning(false);
-    if (r.done.length) toast.success(`${r.done.length} ação(ões) executada(s)`);
-    if (r.needsDesktop.length)
-      toast.warning(`${r.needsDesktop.length} ação(ões) não executada(s)`, {
-        description: "Executar programas, .bat e terminal exige a versão desktop do Ambientes.",
+    if (r.done.length) toast.success(`${cfg.config.name}: ${r.done.length} ação(ões) executada(s)`);
+    if (r.failed.length) {
+      const msg = r.failed.map((f) => f.message).filter(Boolean).join(" | ") || "Verifique os caminhos configurados no executável.";
+      toast.error(`${r.failed.length} ação(ões) com erro`, {
+        description: msg,
       });
+    }
+  }
+
+  function runActive() {
+    if (activeExec) void runConfig(activeExec);
+  }
+
+  function runDirectory(dirId: string) {
+    const dExec = getExecution(data, env!.id, dirId);
+    if (dExec) void runConfig(dExec);
   }
 
   return (
@@ -167,9 +220,19 @@ function EnvironmentPage() {
           </div>
 
           {view === "icons" ? (
-            <DirectoryIcons environmentId={env.id} parentId={current?.id ?? null} onOpenFolder={goFolder} />
+            <DirectoryIcons
+              environmentId={env.id}
+              parentId={current?.id ?? null}
+              onOpenFolder={goFolder}
+              onRunDirectory={runDirectory}
+            />
           ) : (
-            <DirectoryTree environmentId={env.id} parentId={current?.id ?? null} onOpenFolder={goFolder} />
+            <DirectoryTree
+              environmentId={env.id}
+              parentId={current?.id ?? null}
+              onOpenFolder={goFolder}
+              onRunDirectory={runDirectory}
+            />
           )}
         </main>
 
@@ -195,7 +258,7 @@ function EnvironmentPage() {
                 <DropdownMenuItem onSelect={() => setAddDir(true)}><FolderInput /> Adicionar diretório</DropdownMenuItem>
                 <DropdownMenuItem onSelect={openInWindows}><ExternalLink /> Abrir no Windows</DropdownMenuItem>
                 <DropdownMenuSub>
-                  <DropdownMenuSubTrigger><Flag className="mr-2 size-4" /> Alterar prioridade</DropdownMenuSubTrigger>
+                  <DropdownMenuSubTrigger><Flag /> Alterar prioridade</DropdownMenuSubTrigger>
                   <DropdownMenuSubContent>
                     <DropdownMenuRadioGroup value={String(env.priority)} onValueChange={(v) => setEnvironmentPriority(env.id, Number(v) as Priority)}>
                       {([3, 2, 1] as Priority[]).map((p) => (
@@ -204,40 +267,71 @@ function EnvironmentPage() {
                     </DropdownMenuRadioGroup>
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>
-                <DropdownMenuItem onSelect={() => setExecOpen(true)}><Settings2 /> Configurar executável</DropdownMenuItem>
+
+                {/* Única opção de configurar executável relativa ao contexto atual */}
+                <DropdownMenuItem onSelect={openExecConfig}>
+                  <Settings2 /> Configurar executável
+                </DropdownMenuItem>
+
+                <DropdownMenuSeparator />
+
+                {/* Opção de renomear pasta quando dentro de um diretório */}
+                {current && (
+                  <DropdownMenuItem onSelect={() => setRenamingFolder(true)}>
+                    <Pencil /> Renomear pasta
+                  </DropdownMenuItem>
+                )}
+
+                {/* Excluir exclusivo do contexto atual: se estiver em pasta, exclui a pasta; se na raiz, o ambiente */}
+                {current ? (
+                  <DropdownMenuItem
+                    className="text-destructive focus:text-destructive"
+                    onSelect={() => {
+                      if (confirm(`Remover "${current.name}" da estrutura? Nada é apagado no Windows.`)) {
+                        goFolder(current.parentId ?? undefined);
+                        deleteDirectory(current.id);
+                      }
+                    }}
+                  >
+                    <Trash2 /> Deletar pasta
+                  </DropdownMenuItem>
+                ) : (
+                  <DropdownMenuItem
+                    className="text-destructive focus:text-destructive"
+                    onSelect={() => {
+                      if (confirm(`Excluir o ambiente "${env.name}"? As listas associadas não serão apagadas.`)) {
+                        navigate({ to: "/" });
+                        deleteEnvironment(env.id);
+                      }
+                    }}
+                  >
+                    <Trash2 /> Excluir ambiente
+                  </DropdownMenuItem>
+                )}
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {showRun && exec && (
-              <div className="rounded-xl border-[1.5px] border-highlight/50 bg-accent/40 p-2">
-                <Button variant="highlight" className="w-full" onClick={run} disabled={running}>
-                  <Play /> {exec.config.name}
+            {/* Painel do Executável do contexto atual (se configurado) */}
+            {showRun && activeExec && (
+              <div className="rounded-xl border-[1.5px] border-highlight/50 bg-accent/40 p-2.5">
+                <Button variant="highlight" className="w-full" onClick={runActive} disabled={running}>
+                  <Play /> {activeExec.config.name}
                 </Button>
                 <ol className="mt-2 space-y-0.5 px-1">
-                  {exec.actions.map((a, i) => (
+                  {activeExec.actions.map((a, i) => (
                     <li key={a.id} className="truncate font-mono text-[11px] text-muted-foreground" title={a.value}>
                       {i + 1}. {ACTION_TYPE_LABEL[a.type]} {a.value}
                     </li>
                   ))}
                 </ol>
-                <button onClick={() => setExecOpen(true)} className="mt-1 px-1 text-xs text-accent-foreground underline-offset-2 hover:underline">
+                <button
+                  type="button"
+                  onClick={openExecConfig}
+                  className="mt-1.5 px-1 text-xs text-accent-foreground underline-offset-2 hover:underline"
+                >
                   Editar configuração
                 </button>
               </div>
-            )}
-
-            {current && (
-              <Button
-                variant="danger"
-                onClick={() => {
-                  if (confirm(`Remover "${current.name}" da estrutura? Nada é apagado no Windows.`)) {
-                    goFolder(current.parentId ?? undefined);
-                    deleteDirectory(current.id);
-                  }
-                }}
-              >
-                <Trash2 /> Deletar pasta
-              </Button>
             )}
           </div>
 
@@ -268,9 +362,32 @@ function EnvironmentPage() {
         </section>
       )}
 
-      <AddDirectoryDialog open={addDir} onOpenChange={setAddDir} environmentId={env.id} />
+      <AddDirectoryDialog
+        open={addDir}
+        onOpenChange={setAddDir}
+        environmentId={env.id}
+        parentId={current?.id ?? null}
+      />
       <CreateFolderDialog open={newFolder} onOpenChange={setNewFolder} environmentId={env.id} parent={current} />
-      <ExecutionDialog open={execOpen} onOpenChange={setExecOpen} environmentId={env.id} />
+      <RenameFolderDialog
+        open={renamingFolder}
+        onOpenChange={setRenamingFolder}
+        directory={current}
+        onRename={(newName) => {
+          if (current) {
+            renameDirectory(current.id, newName);
+            toast.success(`Pasta renomeada para "${newName}"`);
+          }
+        }}
+      />
+      <ExecutionDialog
+        open={execOpen}
+        onOpenChange={setExecOpen}
+        environmentId={env!.id}
+        directoryId={execTarget?.directoryId ?? null}
+        {...(execTarget?.targetName !== undefined ? { targetName: execTarget.targetName } : {})}
+        {...(execTarget?.initialPath !== undefined ? { initialPath: execTarget.initialPath } : {})}
+      />
     </div>
   );
 }

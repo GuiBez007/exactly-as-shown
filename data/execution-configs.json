@@ -1,0 +1,34 @@
+[
+  {
+    "id": "71ce8b48-0cc9-4215-b3d1-79b09503071b",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "directoryId": "9854c259-6fb0-47fd-9570-a54e465a0152",
+    "projectPath": "C:\\REPOSITORIES\\GB__LeitorPDF",
+    "name": "Executar LeitorPDF",
+    "enabled": true
+  },
+  {
+    "id": "f558bb7c-ede9-4fa2-9ea2-b1ac51508b0a",
+    "environmentId": "wdxfkglgkbqmwjrsuwk",
+    "directoryId": "e4df7826-dfa7-44de-a1be-574098389a74",
+    "projectPath": "C:\\REPOSITORIES\\GB_GASpOrganizer",
+    "name": "Executar GAS+",
+    "enabled": true
+  },
+  {
+    "id": "da008856-3d92-4d96-8dea-2815e33330ca",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "directoryId": "3871e62c-488d-4cc2-b082-e74317d5a64d",
+    "projectPath": "C:\\REPOSITORIES\\GB_MindSpace",
+    "name": "Executar MindSpace",
+    "enabled": true
+  },
+  {
+    "id": "ba863a30-221e-4a4b-a573-4f2e4d669a9d",
+    "environmentId": "fdeyjib7gpdmwjrsjzq",
+    "directoryId": "b37340c6-d919-4795-8fa8-60b40df844a2",
+    "projectPath": "C:\\REPOSITORIES\\_GAMES\\VG_GameDevSoloOrganizer",
+    "name": "Executar GameDevSolo",
+    "enabled": true
+  }
+]

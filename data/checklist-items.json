@@ -1,0 +1,81 @@
+[
+  {
+    "id": "9bee38bd-d15b-41a8-8ba1-554e18db5e15",
+    "checklistId": "6bc9a323-c453-4159-917d-0003aaf0881d",
+    "text": "Esquema git para projetos",
+    "completed": false,
+    "position": 1,
+    "createdAt": 1795065318724,
+    "updatedAt": 1795065318724
+  },
+  {
+    "id": "d93efb7f-c449-4c62-afb5-20f03afeb32f",
+    "checklistId": "728673bd-96a5-451b-ab7a-45a057d4e8de",
+    "text": "Cleia",
+    "completed": false,
+    "position": 1,
+    "createdAt": 1795065357567,
+    "updatedAt": 1795065385178,
+    "price": 400,
+    "includeInTotal": true
+  },
+  {
+    "id": "9be11e29-0ec4-42d3-bf04-831802f328e5",
+    "checklistId": "728673bd-96a5-451b-ab7a-45a057d4e8de",
+    "text": "Pietro",
+    "completed": false,
+    "position": 4,
+    "createdAt": 1795065362254,
+    "updatedAt": 1795065404876,
+    "price": 300,
+    "includeInTotal": false
+  },
+  {
+    "id": "108a5c4d-6d19-4f1f-a404-37887d6d218c",
+    "checklistId": "728673bd-96a5-451b-ab7a-45a057d4e8de",
+    "text": "Pai -> Cleia",
+    "completed": false,
+    "position": 6,
+    "createdAt": 1795065503857,
+    "updatedAt": 1795066134501,
+    "price": 2300,
+    "includeInTotal": true
+  },
+  {
+    "id": "0ecd7b3a-6e58-4389-a55c-8e379f42dce3",
+    "checklistId": "6bc9a323-c453-4159-917d-0003aaf0881d",
+    "text": "Mover itens e as própria listas",
+    "completed": false,
+    "position": 2,
+    "createdAt": 1795066206989,
+    "updatedAt": 1795066297479
+  },
+  {
+    "id": "ac0f960f-cc69-4b40-a4b2-b89fa004348d",
+    "checklistId": "50ec6f67-c84f-42b0-ae3f-19aa4244e20f",
+    "text": "asdsda",
+    "completed": false,
+    "position": 1,
+    "createdAt": 1795067032524,
+    "updatedAt": 1795067042996,
+    "deleted": true
+  },
+  {
+    "id": "0fc11b9f-01ca-43ca-a873-f999dcb50127",
+    "checklistId": "6bc9a323-c453-4159-917d-0003aaf0881d",
+    "text": "Deixar a lista expandida com altura minima (sem rolagem)",
+    "completed": false,
+    "position": 3,
+    "createdAt": 1795067472847,
+    "updatedAt": 1795067472847
+  },
+  {
+    "id": "174c70a0-ce8a-4f3e-ad66-9828006df84c",
+    "checklistId": "6bc9a323-c453-4159-917d-0003aaf0881d",
+    "text": "Pensar sobre botão play (por causa das listas) e portas expostas para visualização",
+    "completed": false,
+    "position": 4,
+    "createdAt": 1795067607723,
+    "updatedAt": 1795067607723
+  }
+]
